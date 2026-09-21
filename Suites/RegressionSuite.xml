@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng/testng-1.0.dtd">
+<suite name="RegressonSuite" >
+    <test name="RegressionSuite" parallel="classes" thread-count="4">
+
+           <packages>
+               <package name="Tests.WebTableTest.*"></package>
+               <package name="Tests.TextBoxTest.*"></package>
+           </packages>
+    </test>
+</suite>

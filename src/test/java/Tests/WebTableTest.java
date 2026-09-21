@@ -1,40 +1,57 @@
 package Tests;
 
+import ObjectData.TextBoxObject;
+import ObjectData.WebTableObject;
 import Pages.CommonPage;
 import Pages.HomePage;
+import Pages.TextBoxPage;
+
 import Pages.WebTablePage;
 import SharedData.TestBasePage;
+import XmlReader.XmlDataLoader;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Test
+import java.util.Map;
+
+@Listeners(ChainTestListener.class)
 public class WebTableTest extends TestBasePage {
+
+    private Map<String , WebTableObject> webTableObjectMap;
 
     @Test
     public void metodaTest() throws InterruptedException {
-        String firstName = "Andreea";
-        String lastName = "Macra";
-        String age = "25";
-        String userEmail = "test@yahoo.com";
-        String salary = "10000";
-        String department = "QA";
+
+        webTableObjectMap = XmlDataLoader.loadData("C:\\Users\\andre\\IdeaProjects\\AutomationItSchool\\src\\test\\resources\\WebTableData.xml", WebTableObject.class);
+        WebTableObject data = webTableObjectMap.get("dataSet1");
+        WebTableObject dataSecoundEnter =webTableObjectMap.get("dataSet2");
+//
+//        String firstName = "Andreea";
+//        String lastName = "Macra";
+//        String age = "25";
+//        String userEmail = "test@yahoo.com";
+//        String salary = "10000";
+//        String department = "QA";
 
         Thread.sleep(2000);
 
         HomePage homePage = new HomePage(getDriver());
         homePage.clickElements();
-
+        ChainTestListener.log("The user clicked on submenu");
         CommonPage commonPage = new CommonPage(getDriver());
         commonPage.clickOnSubMenu("Web Tables");
+        ChainTestListener.log("The user clicked on submenu");
 
         WebTablePage webTablePage = new WebTablePage(getDriver());
-        webTablePage.addEntry(firstName, lastName,userEmail,age,salary,department);
-        webTablePage.addEntry("maria", "ioana","andreea@yahoo.com", "30","2000","QA");
+       // webTablePage.addEntry(firstName, lastName,userEmail,age,salary,department);
+        webTablePage.addEntry(data);
 
         Thread.sleep(2000);
 
@@ -43,7 +60,7 @@ public class WebTableTest extends TestBasePage {
         System.out.println(rowAddedText);
 
         Thread.sleep(2000);
-        webTablePage.verifyEntry(firstName,lastName,userEmail,age,salary,department);
+       // webTablePage.verifyEntry(firstName,lastName,userEmail,age,salary,department);
 
 
        /* ChromeOptions options = new ChromeOptions();

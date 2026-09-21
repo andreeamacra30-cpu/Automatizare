@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-@Test
+
 public class alertTest extends TestBasePage {
 
 

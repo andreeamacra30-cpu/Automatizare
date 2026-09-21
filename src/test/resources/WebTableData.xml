@@ -1,0 +1,21 @@
+<dataSets>
+    <dataSet1>
+        <firstName>Andreea</firstName>
+        <lastName>Macra</lastName>
+        <age>25</age>
+        <userEmail>test@yahoo.com</userEmail>
+        <salary>10000</salary>
+        <department>QA</department>
+    </dataSet1>
+
+    <dataSet2>
+        <firstName>Elena</firstName>
+        <lastName>Macra</lastName>
+        <age>24</age>
+        <userEmail>test2@yahoo.com</userEmail>
+        <salary>15000</salary>
+        <department>Testare</department>
+    </dataSet2>
+
+</dataSets>
+

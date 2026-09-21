@@ -2,13 +2,14 @@ package Pages;
 
 import HelperMethods.AlertsMethods;
 import HelperMethods.ElementsMetods;
+import SharedData.TestBasePage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AlertsPage {
+public class AlertsPage  {
     WebDriver driver;
     ElementsMetods elementsMetods;
     AlertsMethods alertsMethods;

@@ -1,9 +1,11 @@
 package Tests;
 
+import ObjectData.TextBoxObject;
 import Pages.CommonPage;
 import Pages.HomePage;
 import Pages.TextBoxPage;
 import SharedData.TestBasePage;
+import XmlReader.XmlDataLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,19 +15,24 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
 import java.util.List;
-@Test
-public class TextBoxTest extends TestBasePage {
+import java.util.Map;
 
+public class TextBoxTest extends TestBasePage {
+    private Map<String ,TextBoxObject> textBoxObjectMap;
 
 
     @Test
     public void metodaTest() throws InterruptedException {
+        textBoxObjectMap = XmlDataLoader.loadData("C:\\Users\\andre\\IdeaProjects\\AutomationItSchool\\src\\test\\resources\\TextBoxData.xml", TextBoxObject.class);
+        TextBoxObject data = textBoxObjectMap.get("dataSet_2");
+
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        js.executeScript("window.scrollBy(0, 400);"); // 800 pixeli in jos
-        String userName = "Andreea";
-        String userEmail = "andreea.macra@gmail.com";
-        String currentAddress = "Campia Turzii";
-        String permanentAddress = "Campia Turzii";
+
+//        js.executeScript("window.scrollBy(0, 400);"); // 800 pixeli in jos
+//        String userName = "Andreea";
+//        String userEmail = "andreea.macra@gmail.com";
+//        String currentAddress = "Campia Turzii";
+//        String permanentAddress = "Campia Turzii";
 
         HomePage homePage = new HomePage(getDriver());
         homePage.clickElements();
@@ -35,7 +42,7 @@ public class TextBoxTest extends TestBasePage {
         commonPage.clickOnSubMenu("Text Box");
 
         TextBoxPage textBoxPage  = new TextBoxPage(getDriver());
-        textBoxPage.addEntry(userName,userEmail,currentAddress,permanentAddress);
+        textBoxPage.entryTextBox(data);
 
         WebElement name = getDriver().findElement(By.id("name"));
         WebElement email = getDriver().findElement(By.id("email"));

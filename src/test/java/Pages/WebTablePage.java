@@ -1,6 +1,8 @@
 package Pages;
 
 import HelperMethods.ElementsMetods;
+import Logger.LoggerUtility;
+import ObjectData.WebTableObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,80 +43,91 @@ public class WebTablePage {
     @FindBy(id= "submit")
     WebElement submitButton;
 
-    public void addEntry(String firstName, String lastName,String userEmail, String age, String salary, String department)
-    {
-        clickOnAddButton();
-        enterFirstName(firstName);
-        enterLastName(lastName);
-        enterUserEmail(userEmail);
-        enterAge(age);
-        enterSalary(salary);
-        enterDepartment(department);
-        clickOnSubmitButton();
-    }
+    public void addEntry(WebTableObject data){
 
-    public void clickOnAddButton()
-    {
-        elementsMetods.clickOnElement(addButton);
-    }
-    public void enterFirstName(String firstNameText)
-    {
-        elementsMetods.enterText(firstNameField,firstNameText);
-    }
-    public void enterLastName(String lastNameText)
-    {
-        elementsMetods.enterText(lastNameField,lastNameText);
-    }
-    public void enterUserEmail(String userEmailText)
-    {
-        elementsMetods.enterText(userEmailField,userEmailText);
-    }
-    public void enterAge(String ageText)
-    {
-        elementsMetods.enterText(ageField,ageText);
-    }
-    public void enterSalary(String salaryText)
-    {
-        elementsMetods.enterText(salaryField,salaryText);
-    }
-    public void enterDepartment(String departmentText)
-    {
-        elementsMetods.enterText(departmentField,departmentText);
-    }
+    clickOnAddButton();
+        LoggerUtility.infoTestCase("User clicked on add button");
+    enterFirstName(data.getFirstName());
+        LoggerUtility.infoTestCase("User entered First Name");
+    enterLastName(data.getLastName());
+        LoggerUtility.infoTestCase("User entered Last Name");
+    enterUserEmail(data.getUserEmail());
+        LoggerUtility.infoTestCase("User entered the Email");
+    enterAge(data.getAge());
+        LoggerUtility.infoTestCase("User entered the Age");
+    enterSalary(data.getSalary());
+        LoggerUtility.infoTestCase("User entered the Salary");
+    enterDepartment(data.getDepartment());
+        LoggerUtility.infoTestCase("User entered the Department");
+    clickOnSubmitButton();
+}
 
-    public void clickOnSubmitButton()
-    {
-        elementsMetods.clickOnElement(submitButton);
-    }
+public void clickOnAddButton()
+{
 
-    @FindBy(xpath = "(//tr)[5]//td[1]")
-    WebElement  firstNameColumn;
+    elementsMetods.clickOnElement(addButton);
+}
+public void enterFirstName(String firstNameText)
+{
+    elementsMetods.enterText(firstNameField,firstNameText);
+}
+public void enterLastName(String lastNameText)
+{
+    elementsMetods.enterText(lastNameField,lastNameText);
+}
+public void enterUserEmail(String userEmailText) {elementsMetods.enterText(userEmailField,userEmailText);}
+public void enterAge(String ageText)
+{
+    elementsMetods.enterText(ageField,ageText);
+}
+public void enterSalary(String salaryText)
+{
+    elementsMetods.enterText(salaryField,salaryText);
+}
+public void enterDepartment(String departmentText)
+{
+    elementsMetods.enterText(departmentField,departmentText);
+}
 
-    @FindBy(xpath = "(//tr)[5]//td[2]")
-    WebElement lastNameColumn;
+public void clickOnSubmitButton()
+{
+    elementsMetods.clickOnElement(submitButton);
+}
 
-    @FindBy(xpath ="(//tr)[5]//td[3]")
-    WebElement ageColumn;
+@FindBy(xpath = "(//tr)[5]//td[1]")
+WebElement  firstNameColumn;
 
-    @FindBy(xpath ="(//tr)[5]//td[4]" )
-    WebElement userEmailColumn;
+@FindBy(xpath = "(//tr)[5]//td[2]")
+WebElement lastNameColumn;
 
-    @FindBy (xpath = "(//tr)[5]//td[5]")
-    WebElement salaryColumn;
+@FindBy(xpath ="(//tr)[5]//td[3]")
+WebElement ageColumn;
 
-    @FindBy(xpath = "(//tr)[5]//td[6]")
-    WebElement departmentColumn;
+@FindBy(xpath ="(//tr)[5]//td[4]" )
+WebElement userEmailColumn;
 
-    public void verifyEntry(String firstName, String lastName,String userEmail, String age, String salary, String department){
+@FindBy (xpath = "(//tr)[5]//td[5]")
+WebElement salaryColumn;
 
-        Assert.assertTrue(firstNameColumn.getText().equals(firstName));
-        Assert.assertTrue(lastNameColumn.getText().equals(lastName));
-        Assert.assertTrue(userEmailColumn.getText().equals(userEmail));
-        Assert.assertTrue(ageColumn.getText().equals(age));
-        Assert.assertEquals(salaryColumn.getText(),salary);
-        Assert.assertTrue(departmentColumn.getText().equals(department));
+@FindBy(xpath = "(//tr)[5]//td[6]")
+WebElement departmentColumn;
 
-    }
+public void verifyEntry(String firstName, String lastName,String userEmail, String age, String salary, String department){
+
+    Assert.assertTrue(firstNameColumn.getText().equals(firstName));
+    LoggerUtility.infoTestCase("User verifird the First Name");
+    Assert.assertTrue(lastNameColumn.getText().equals(lastName));
+    LoggerUtility.infoTestCase("User verifird the Last Name");
+    Assert.assertTrue(userEmailColumn.getText().equals(userEmail));
+    LoggerUtility.infoTestCase("User verifird the Email");
+    Assert.assertTrue(ageColumn.getText().equals(age));
+    LoggerUtility.infoTestCase("User verifird the Age");
+    Assert.assertEquals(salaryColumn.getText(),salary);
+    LoggerUtility.infoTestCase("User verifird the Salary");
+    Assert.assertTrue(departmentColumn.getText().equals(department));
+    LoggerUtility.infoTestCase("User verifird the Department");
+
+}
 }
 
 

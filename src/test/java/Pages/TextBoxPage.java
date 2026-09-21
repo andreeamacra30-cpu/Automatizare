@@ -1,6 +1,7 @@
 package Pages;
 
 import HelperMethods.ElementsMetods;
+import ObjectData.TextBoxObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,12 +31,12 @@ public class TextBoxPage {
     WebElement submitButton;
 
 
-  public void addEntry(String userName, String userEmail, String currentAddress, String permanentAddress)
+  public void entryTextBox(TextBoxObject textBoxObject)
   {
-      enterUserName(userName);
-      enterUserEmail(userEmail);
-      enterCurrentAddress(currentAddress);
-      enterPermanentAddress(permanentAddress);
+      enterUserName(textBoxObject.getUserName());
+      enterUserEmail(textBoxObject.getUserEmail());
+      enterCurrentAddress(textBoxObject.getCurrentAddress());
+      enterPermanentAddress(textBoxObject.getPermanentAddress());
       clickOnSubmitButton();
 
   }
@@ -54,6 +55,8 @@ public class TextBoxPage {
   public void clickOnSubmitButton(){
       elementsMetods.clickOnElement(submitButton);
   }
+
+
 
 }
 

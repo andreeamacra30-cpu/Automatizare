@@ -4,6 +4,7 @@ import HelperMethods.ElementsMetods;
 import Pages.CommonPage;
 import Pages.FramesPage;
 import Pages.HomePage;
+import SharedData.TestBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -14,42 +15,42 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class framesTest {
+public class framesTest extends TestBasePage {
 
     @Test
     public void metodaTest(){
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments(
-                "--user-data-dir=C:\\SeleniumChromeProfile"
-        );
+      //  ChromeOptions options = new ChromeOptions();
+//        options.addArguments(
+//                "--user-data-dir=C:\\SeleniumChromeProfile"
+//        );
+//
+//        WebDriver driver = new ChromeDriver(options); //se acceseaza chrome
+//        driver.manage().window().maximize(); //maximizeaza fereastra
+////WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+//        driver.get("https://demoqa.com/");
 
-        WebDriver driver = new ChromeDriver(options); //se acceseaza chrome
-        driver.manage().window().maximize(); //maximizeaza fereastra
-//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-        driver.get("https://demoqa.com/");
 
 
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("window.scrollBy(0, 800);"); // 800 pixeli in jos
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.clickAlertsButton();
 
-        CommonPage commonPage = new CommonPage(driver);
+        CommonPage commonPage = new CommonPage(getDriver());
         commonPage.clickOnSubMenu("Frames");
 
-        FramesPage framesPage = new FramesPage(driver);
+        FramesPage framesPage = new FramesPage(getDriver());
         framesPage.firstFrameElement();
         framesPage.firstFrameText();
 
-        driver.switchTo().defaultContent();
+        getDriver().switchTo().defaultContent();
 
         framesPage.secondFrameElement();
         framesPage.secondFrameText();
 
-        driver.switchTo().defaultContent();
+        getDriver().switchTo().defaultContent();
 
 
 

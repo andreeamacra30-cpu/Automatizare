@@ -43,5 +43,7 @@ public class HomePage {
         elementsMetods.clickOnElement(framesButton);
     }
 
+    public void clickForms(){elementsMetods.clickOnElement(formsButton);}
+
 
 }
